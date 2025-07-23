@@ -1,0 +1,29 @@
+header {
+  border-bottom: 1px solid var(--evening);
+  background: var(--stormy);
+  padding: 25px 40px;
+}
+
+.inner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav li {
+  font-weight: 500;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+}
+nav a:hover {
+  transform: translateY(-2px);
+}
