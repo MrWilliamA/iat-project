@@ -1,49 +1,34 @@
-import "./Main.css";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import CourseCard from "./CourseCard";
+import "./Main.css";
+import Error from "../Error";
+import Loading from "../Loading";
+
+const fetchCourses = async () => {
+  const res = await axios.get("http://localhost:5000/api/courses"); // Use your real backend URL if deployed
+  return res.data;
+};
 
 const Main = () => {
-  const dummyData = [
-    {
-      id: 1,
-      title: "MicroCourse 1",
-      description: "This is the first MicroCourse.",
-      hours: 10,
-      price: 399,
-      img: "1.png",
-    },
-    {
-      id: 2,
-      title: "MicroCourse 2",
-      description: "This is the second MicroCourse.",
-      hours: 60,
-      price: 599,
-      img: "2.png",
-    },
-    {
-      id: 3,
-      title: "MicroCourse 3",
-      description: "This is the third MicroCourse.",
-      hours: 90,
-      price: 650,
-      img: "3.jpg",
-    },
-    {
-      id: 4,
-      title: "MicroCourse 4",
-      description: "This is the fourth MicroCourse.",
-      hours: 100,
-      price: 799,
-      img: "4.png",
-    },
-  ];
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["courses"],
+    queryFn: fetchCourses,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+    refetchOnWindowFocus: false, // Do not refetch when tab/window regains focus
+  });
+
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
 
   return (
     <main>
-      <h1>Available MicroCourses Courses</h1>
+      <h1>Available MicroCourses</h1>
       <p className="tag-line">Peruse our wonderful list of courses!</p>
       <section className="course-list">
-        {dummyData?.map((course) => (
-          <CourseCard course={course} key={course.id} />
+        {data?.map((course) => (
+          <CourseCard course={course} key={course._id} />
         ))}
       </section>
     </main>

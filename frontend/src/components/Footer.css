@@ -1,6 +1,6 @@
 footer {
   border-top: 1px solid var(--evening);
-  background: var(--cloud);
+  background: var(--stormy);
   padding: 40px 25px;
   margin-top: 40px;
 }
@@ -12,5 +12,5 @@ footer {
 .inner-footer p {
   margin: 0;
   font-weight: 700;
-  color: var(--stormy);
+  color: #fff;
 }

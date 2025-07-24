@@ -32,7 +32,6 @@ h1 {
   margin: 40px 0;
 }
 .img-container {
-  width: 300px;
   height: 200px;
   overflow: hidden;
 }
@@ -63,7 +62,8 @@ h1 {
 }
 
 .hours {
-  background: #ededed;
+  background: var(--cloud);
+  color: #fff;
   padding: 5px 12px;
   border-radius: 10px;
 }

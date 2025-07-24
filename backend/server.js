@@ -42,6 +42,7 @@ app.get("/api/courses", async (req, res) => {
 });
 
 app.get("/api/courses/:id", async (req, res) => {
+  console.log(`Fetching course with ID: ${req.params.id}`);
   try {
     const course = await Course.findById(req.params.id);
     if (!course) return res.status(404).json({ message: "Course not found" });

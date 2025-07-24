@@ -5,6 +5,10 @@
   --evening: #192231;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Outfit", sans-serif;
@@ -22,6 +26,13 @@ code {
   flex-direction: column;
   min-height: 100vh;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.error-message {
+  background-color: var(--sunset);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
 }
 
 @keyframes fadeInUp {
