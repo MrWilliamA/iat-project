@@ -1,0 +1,102 @@
+.add-course-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 15px 0;
+  gap: 1%;
+}
+
+.half {
+  width: 48%;
+}
+
+.quarter {
+  width: 24%;
+}
+
+.third {
+  width: 33%;
+}
+
+.two-thirds {
+  width: 66%;
+}
+
+.eighth {
+  width: 12%;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--cloud);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+label span {
+  font-size: 0.9em;
+  color: var(--cloud);
+}
+
+.add-module-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.add-module {
+  background-color: var(--sunset);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.add-module:hover {
+  background-color: var(--evening);
+}
+
+.cancel-add-course {
+  background-color: var(--cloud);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.cancel-add-course:hover {
+  background-color: var(--evening);
+}
+
+@media screen and (max-width: 879px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .half,
+  .quarter,
+  .third,
+  .two-thirds,
+  .eighth {
+    width: 100%;
+  }
+}

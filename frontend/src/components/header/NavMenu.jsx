@@ -13,9 +13,6 @@ const NavMenu = () => {
         <li>
           <NavLink to="/contact">Contact</NavLink>
         </li>
-        <li>
-          <NavLink to="/services">Services</NavLink>
-        </li>
       </ul>
     </nav>
   );

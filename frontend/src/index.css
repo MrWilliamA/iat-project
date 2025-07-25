@@ -1,6 +1,7 @@
 :root {
   --stormy: #494e6b;
   --cloud: #98878f;
+  --cloud-light: #a7a4a57a;
   --sunset: #b52323;
   --evening: #192231;
 }
@@ -14,6 +15,13 @@ body {
   font-family: "Outfit", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--stormy);
+}
+a:hover {
+  color: var(--sunset);
 }
 
 code {
