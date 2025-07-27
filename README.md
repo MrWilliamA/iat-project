@@ -11,6 +11,9 @@ The goal of this project is to demonstrate a basic full-stack web application us
 ### Frontend
 
 - **React** (bootstrapped with [Create React App](https://github.com/facebook/create-react-app))
+- **TanStack Query** for data fetching and caching
+- **Axios** for HTTP requests
+- **React Router** for client-side routing
 - **CSS Modules** / plain CSS for styling
 
 ### Backend
@@ -49,6 +52,20 @@ project-root/
 - Enroll/unenroll functionality
 - Organized image directories for large and thumbnail formats
 - Fully responsive design
+- Efficient data caching and synchronization with TanStack Query
+
+## API & Caching with TanStack Query
+
+This project uses TanStack Query (React Query) for powerful data fetching and caching.
+
+- Fetching is done using Axios for clean and consistent HTTP requests
+- Caching minimizes unnecessary API calls and provides instant updates on state changes
+- Auto-refetching and background updates ensure data remains fresh across components
+- Query invalidation is used to refresh course lists when new data is added (e.g., after enrolling or uploading a course)
+
+## Routing
+
+Routing between pages (e.g., Home, Course Details, Enroll, Upload) is handled using React Router, enabling smooth single-page navigation without full page reloads.
 
 ## 🔧 Setup Instructions
 
