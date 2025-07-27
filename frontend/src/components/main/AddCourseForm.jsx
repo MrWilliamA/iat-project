@@ -1,19 +1,19 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Query, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import axios from "axios";
 import "./AddCourseForm.css";
 
 const AddCourseForm = ({ setShowAddCourseForm }) => {
+  // cancel creating course and close the form
   const handleCancel = () => {
     setShowAddCourseForm(false);
     resetForm();
   };
 
+  // create a new course via TanStack Query
   const queryClient = useQueryClient();
 
   const createCourse = async (formData) => {
-    console.log("Creating course with:", formData);
-
     const res = await axios.post(
       `${process.env.REACT_APP_API_URL}/courses`,
       formData,
@@ -30,7 +30,6 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
   const createCourseMutation = useMutation({
     mutationFn: createCourse,
     onSuccess: () => {
-      console.log("Course created");
       queryClient.invalidateQueries(["courses"]);
       resetForm();
     },
@@ -40,6 +39,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     },
   });
 
+  // form state management
   const [formData, setFormData] = useState({
     title: "",
     summary: "",
@@ -49,9 +49,10 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     instructor: "",
     category: "",
     modules: [{ name: "", marks: 0 }],
-    imgFile: null, // file input
+    imgFile: null,
   });
 
+  // handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -60,6 +61,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     }));
   };
 
+  // handle course module input changes
   const handleModuleChange = (index, field, value) => {
     const updatedModules = [...formData.modules];
     updatedModules[index][field] = field === "marks" ? Number(value) : value;
@@ -69,6 +71,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     }));
   };
 
+  // add new module per course
   const addModule = () => {
     setFormData((prev) => ({
       ...prev,
@@ -76,6 +79,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     }));
   };
 
+  // handle file input change for course image
   const handleFileChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -83,6 +87,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     }));
   };
 
+  // reset form to initial state
   const resetForm = () => {
     setFormData({
       title: "",
@@ -97,6 +102,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
     });
   };
 
+  // handle form submission to create new course
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -194,6 +200,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
             type="text"
             id="summary"
             rows="4"
+            maxLength={75}
             name="summary"
             placeholder="Summary"
             value={formData.summary}
@@ -207,6 +214,7 @@ const AddCourseForm = ({ setShowAddCourseForm }) => {
             name="description"
             id="description"
             rows="4"
+            maxLength={1000}
             placeholder="Description"
             value={formData.description}
             onChange={handleChange}

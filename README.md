@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# IAT MicroCourses Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple full-stack application built using the **MERN stack** (MongoDB, Express, React, Node.js). It allows users to view, upload, and enroll in micro-courses.
 
-## Available Scripts
+## 🚀 Project Overview
 
-In the project directory, you can run:
+The goal of this project is to demonstrate a basic full-stack web application using modern JavaScript technologies. It includes image upload, dynamic frontend rendering, and MongoDB integration.
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React** (bootstrapped with [Create React App](https://github.com/facebook/create-react-app))
+- **CSS Modules** / plain CSS for styling
 
-### `npm test`
+### Backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node.js**
+- **Express** for API routes and server logic
+- **Multer** for image file uploads
+- **Sharp** for image resizing and thumbnail generation
 
-### `npm run build`
+### Database
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **MongoDB** (via **MongoDB Atlas**)
+- **Mongoose** for schema modeling
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📂 Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+project-root/
+├── backend/
+│ ├── server.js
+│ ├── models/
+│ └── public/images/
+│ └── .env
+├── frontend/
+│ ├── public/
+│ └── src/
+│ └── .env
+└── README.md
+```
 
-### `npm run eject`
+## ✨ Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Add and view micro-courses
+- Upload and resize course images
+- Store and retrieve data from MongoDB
+- Enroll/unenroll functionality
+- Organized image directories for large and thumbnail formats
+- Fully responsive design
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔧 Setup Instructions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repo:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/MrWilliamA/iat-project.git
+cd iat-project
+cd backend
+npm install
 
-## Learn More
+Create a .env file in the backend/ directory and add below:
+    PORT=5000
+    MONGO_URI= 'provided separately'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+node server.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Start the frontend:
 
-### Code Splitting
+cd ../frontend
+npm install
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Create a .env file in the backend/ directory and add below:
+    REACT_APP_API_URL=http://localhost:5000/api
+    REACT_APP_BACKEND_URL=http://localhost:5000
+```
 
-### Analyzing the Bundle Size
+## Image uploads
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Uploaded course images are saved and processed like this:
 
-### Making a Progressive Web App
+- Large versions: backend/public/images/large/
+- Thumbnails (330px wide): backend/public/images/thumb/
+- Public images served at: /images route
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Notes
 
-### Advanced Configuration
+This is a basic demonstration app — authentication, pagination, and input validation are not implemented.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Designed for educational or portfolio purposes.

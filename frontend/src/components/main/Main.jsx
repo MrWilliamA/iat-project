@@ -14,6 +14,7 @@ const fetchCourses = async () => {
 };
 
 const Main = () => {
+  // state to manage visibility of AddCourseForm
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
 
   const toggleAddCourseForm = () => {

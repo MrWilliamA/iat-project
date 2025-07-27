@@ -4,7 +4,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
-import CourseDetail from "./components/CourseDetail/CourseDetail";
+import CourseDetail from "./components/courseDetail/CourseDetail";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();

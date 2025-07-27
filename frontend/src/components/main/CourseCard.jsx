@@ -4,7 +4,6 @@ const CourseCard = ({ course }) => {
   return (
     <div className="course-card" key={course._id}>
       <div className="img-container">
-        {/* <img src={`/images/thumb/${course.img}`} alt="" /> */}
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/images/thumb/${course.img}`}
           alt="Course"

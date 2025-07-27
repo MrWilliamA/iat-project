@@ -1,3 +1,4 @@
+// imports and configurations
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -6,6 +7,7 @@ const path = require("path");
 const sharp = require("sharp");
 require("dotenv").config();
 
+// App initialization and configurations
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,11 +16,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-const imagesPath = path.join(__dirname, "../frontend/public/images"); // Save uploaded files here
+// Define paths for images
+const publicDir = path.join(__dirname, "public");
+const largeImagesPath = path.join(publicDir, "images/large");
+const thumbImagesPath = path.join(publicDir, "images/thumb");
+const clientImagesPath = path.join(__dirname, "../frontend/public/images");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "public/images/large"));
+    cb(null, largeImagesPath);
   },
   filename: function (req, file, cb) {
     // Generate a unique name here, e.g. timestamp + original extension
@@ -31,13 +37,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Serve images statically at /images URL path
-app.use("/images", express.static(imagesPath));
+app.use("/images", express.static(clientImagesPath));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Try/catch connection to MongoDB
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to MongoDB!"))
+  .catch((err) => console.error("MongoDB failed to connect:", err));
 
 // Schema & Model
 const courseSchema = new mongoose.Schema({
@@ -46,7 +55,7 @@ const courseSchema = new mongoose.Schema({
   description: String,
   duration: Number,
   price: Number,
-  img: String, // will store filename like '1234567-filename.png'
+  img: String,
   modules: [{ name: String, marks: Number }],
   enrolled: { type: Boolean, default: false },
   instructor: String,
@@ -113,18 +122,10 @@ app.post("/api/courses", upload.single("img"), async (req, res) => {
     const modules = JSON.parse(req.body.modules);
 
     // Path to the uploaded large image file
-    const largeImagePath = path.join(
-      __dirname,
-      "public/images/large",
-      req.file.filename
-    );
+    const largeImagePath = path.join(largeImagesPath, req.file.filename);
 
     // Path where thumbnail will be saved
-    const thumbImagePath = path.join(
-      __dirname,
-      "public/images/thumb",
-      req.file.filename
-    );
+    const thumbImagePath = path.join(thumbImagesPath, req.file.filename);
 
     // Use sharp Middleware to resize and create thumbnail
     await sharp(largeImagePath).resize({ width: 330 }).toFile(thumbImagePath);
