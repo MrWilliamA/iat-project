@@ -1,4 +1,4 @@
-import { Query, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import axios from "axios";
 import "./AddCourseForm.css";

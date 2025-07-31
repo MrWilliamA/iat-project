@@ -1,5 +1,7 @@
 # IAT MicroCourses Project
 
+**GITHUB:** https://github.com/MrWilliamA/iat-project
+
 This project is a simple full-stack application built using the **MERN stack** (MongoDB, Express, React, Node.js). It allows users to view, upload, and enroll in micro-courses.
 
 ## 🚀 Project Overview
